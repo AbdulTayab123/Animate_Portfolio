@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { PROFILE } from '@/lib/data';
 import { scrollToTarget } from '@/lib/scroll';
+import { ContactForm } from '@/components/ui/ContactForm';
 
 function BouncingText({ text }: { text: string }) {
   const letters = text.split('');
@@ -32,7 +33,6 @@ export function Contact() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  // ⭐ Channel links with icons
   const channels = [
     {
       label: 'GitHub',
@@ -82,7 +82,7 @@ export function Contact() {
         </h2>
 
         {/* Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-12 items-center mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-12 items-center mb-16">
           {/* LEFT — email + channels */}
           <div className="space-y-8">
             {/* Email */}
@@ -107,7 +107,7 @@ export function Contact() {
               </span>
             </div>
 
-            {/* ⭐ Channel chips (GitHub, LinkedIn, Blog) — redesigned */}
+            {/* Channel chips */}
             <div className="flex flex-wrap items-center gap-3">
               {channels.map((ch) => (
                 <a
@@ -134,7 +134,7 @@ export function Contact() {
               ))}
             </div>
 
-            {/* Phone — subtle */}
+            {/* Phone */}
             <a
               href={PROFILE.phoneHref}
               className="inline-flex items-center gap-2 font-mono text-xs text-[#77756f] hover:text-[#0d0d0d] transition-colors"
@@ -148,12 +148,9 @@ export function Contact() {
 
           {/* RIGHT — spinning badge */}
           <div className="relative w-40 h-40 flex items-center justify-center select-none">
-            {/* Spinning ring with text */}
             <div
               className="absolute inset-0"
-              style={{
-                animation: 'spin 20s linear infinite',
-              }}
+              style={{ animation: 'spin 20s linear infinite' }}
             >
               <svg viewBox="0 0 100 100" width="100%" height="100%">
                 <defs>
@@ -171,7 +168,6 @@ export function Contact() {
               </svg>
             </div>
 
-            {/* Center arrow */}
             <a
               href={`mailto:${PROFILE.email}`}
               aria-label="Send email"
@@ -190,6 +186,11 @@ export function Contact() {
               </svg>
             </a>
           </div>
+        </div>
+
+        {/* ⭐ Contact Form */}
+        <div className="mt-20">
+          <ContactForm />
         </div>
       </div>
 
@@ -213,7 +214,6 @@ export function Contact() {
         </div>
       </footer>
 
-      {/* ⭐ Spin keyframes (agar tailwind config me nahi hai) */}
       <style>{`
         @keyframes spin {
           from { transform: rotate(0deg); }
